@@ -964,11 +964,6 @@
   dependencies:
     react-native-app-intro-slider "^4.0.4"
 
-"@modules/onboarding@file:./modules/onboarding/":
-  version "1.0.0"
-  dependencies:
-    react-native-app-intro-slider "^4.0.4"
-
 "@modules/privacy-policy@file:./modules/privacy-policy":
   version "1.0.1"
   dependencies:
