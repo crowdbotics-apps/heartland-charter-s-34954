@@ -56,6 +56,7 @@ As a result, Crowdbotics can generate new applications automatically in a standa
 
 This section will show any installed modules you add from the Storyboard Modules section.
 - [react-native-onboarding](modules/onboarding)
+- [privacy-policy]()
 
 # Getting started: Frontend
 
