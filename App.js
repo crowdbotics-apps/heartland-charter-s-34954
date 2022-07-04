@@ -8,10 +8,15 @@ import {
   createReducer,
   combineReducers
 } from "@reduxjs/toolkit"
-
 import { screens } from "@screens"
 import { modules, reducers, hooks, initialRoute } from "@modules"
 import { connectors } from "@store"
+import Icon from 'react-native-vector-icons/Feather';
+import { SheetProvider } from "react-native-actions-sheet";
+
+import './components/sheets';
+
+Icon.loadFont();
 
 const Stack = createStackNavigator()
 
@@ -33,12 +38,12 @@ const getNavigation = (modules, screens, initialRoute) => {
       return <Stack.Screen key={name} name={name} component={Component} />
     })
 
-    const screenOptions = { headerShown: true };
+    const screenOptions = { headerShown: false };
 
     return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName={initialRoute}
+          initialRouteName={"Auth"}
           screenOptions={screenOptions}
         >
           {routes}
@@ -78,7 +83,9 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <Navigation />
+      <SheetProvider>
+        <Navigation />
+      </SheetProvider>
     </Provider>
   )
 }

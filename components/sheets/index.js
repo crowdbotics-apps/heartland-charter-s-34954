@@ -1,0 +1,2 @@
+import "./forgot-password";
+export {};
