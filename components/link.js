@@ -1,5 +1,7 @@
 import React from "react"
-import { TouchableOpacity, Text, StyleSheet } from "react-native"
+import { TouchableOpacity, StyleSheet } from "react-native"
+
+import { Text } from './text'
 
 export const Link = ({ title, style = {}, ...props }) => {
   const { color = "#7E8F52", ...otherStyle } = style

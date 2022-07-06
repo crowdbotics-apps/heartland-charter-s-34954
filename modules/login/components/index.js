@@ -1,9 +1,14 @@
 import React from "react"
-import { Text, KeyboardAvoidingView, Image, View, StyleSheet } from "react-native"
+import { KeyboardAvoidingView, Image, View, StyleSheet } from "react-native"
+
+import { Text } from "../../../components"
+import { centerCenter, bgLight, fontSize3 } from "../../../assets/styles"
 
 export const Layout = ({ children, title }) => {
   return (
-    <KeyboardAvoidingView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18, backgroundColor: '#F9F9F9' }}>
+    <KeyboardAvoidingView
+      style={{ flex: 1, ...centerCenter, paddingHorizontal: 18, ...bgLight }}
+    >
       <View>
         <Image
           style={{ width: 129, height: 129, alignSelf: "center" }}
@@ -11,17 +16,15 @@ export const Layout = ({ children, title }) => {
         />
         <Text style={styles.title}>{title}</Text>
       </View>
-      <View style={{ width: '100%'}}>
-       {children}
-      </View>
+      <View style={{ width: "100%" }}>{children}</View>
     </KeyboardAvoidingView>
   )
 }
 
 const styles = StyleSheet.create({
   title: {
-    fontWeight: '500',
-    fontSize: 18,
+    fontWeight: "500",
+    ...fontSize3,
     marginVertical: 40
   }
-});
+})

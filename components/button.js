@@ -1,5 +1,8 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, StyleSheet } from 'react-native';
+
+import { Text } from './text';
+import { borderRadius, centerCenter, bgPrimary } from '../assets/styles';
 
 export const Button = ({
   title,
@@ -17,10 +20,9 @@ export const Button = ({
 const styles = StyleSheet.create({
   button: {
     minHeight: 49,
-    backgroundColor: '#7E8E51',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 5,
+    ...bgPrimary,
+    ...centerCenter,
+    ...borderRadius(),
     shadowColor: 'rgb(126, 143, 82)',
     shadowOffset: {
       height: 0,
