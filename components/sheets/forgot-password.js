@@ -3,38 +3,50 @@ import ActionSheet, {
   registerSheet,
   SheetManager
 } from "react-native-actions-sheet"
-import { Text, StyleSheet } from "react-native"
+import { StyleSheet } from "react-native"
 
-import { Button, Link, TextInputField } from "../"
+import { Button, Link, TextInputField, Text } from "../"
+import {
+  justifyCenter,
+  bgPrimary,
+  borderRadiusLg,
+  textWhite,
+  fontSize2,
+  bgWhite,
+  textPrimary,
+  itemsCenter,
+  bgLightDarkGreen
+} from "../../assets/styles"
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#7E8E51",
-    justifyContent: "center",
+    ...justifyCenter,
+    ...bgPrimary,
     paddingHorizontal: 64,
-    borderTopLeftRadius: 30,
     paddingTop: 11,
-    borderTopRightRadius: 30
+    ...borderRadiusLg({
+      bottom: 0,
+      left: 0
+    })
   },
   title: {
-    fontSize: 20,
+    ...fontSize2,
     fontWeight: "500",
-    color: "white",
+    ...textWhite,
     marginTop: 22,
     textAlign: "center"
   },
   indicator: {
-    backgroundColor: "#6A7747",
+    ...bgLightDarkGreen,
     width: 95
   }
 })
 function ForgotPassword(props) {
-
-  const [data, setData] = useState();
+  const [data, setData] = useState()
 
   const onHide = async () => {
-    await SheetManager.hide("forgotPassword");
-    data.navigateToReset();
+    await SheetManager.hide("forgotPassword")
+    data.navigateToReset()
   }
   return (
     <ActionSheet
@@ -42,15 +54,18 @@ function ForgotPassword(props) {
       gestureEnabled
       containerStyle={styles.container}
       id={props.sheetId}
-      onBeforeShow={(data) => setData(data)}
+      onBeforeShow={data => setData(data)}
     >
-      <TextInputField style={{ marginTop: 45 }}  placeholder="Enter email address"/>
+      <TextInputField
+        style={{ marginTop: 45 }}
+        placeholder="Enter email address"
+      />
       <Button
         title="Reset Password"
         onPress={onHide}
         style={{
-          backgroundColor: "white",
-          color: "#7E8E51",
+          ...bgWhite,
+          ...textPrimary,
           marginBottom: 45,
           marginTop: 25
         }}
@@ -59,10 +74,10 @@ function ForgotPassword(props) {
   )
 }
 function ResetPasswordSuccess(props) {
-  const [data, setData] = useState();
+  const [data, setData] = useState()
   const onHide = async () => {
-    await SheetManager.hide("resetPasswordSuccess");
-    data.navigateToLogin();
+    await SheetManager.hide("resetPasswordSuccess")
+    data.navigateToLogin()
   }
   return (
     <ActionSheet
@@ -70,27 +85,27 @@ function ResetPasswordSuccess(props) {
       gestureEnabled
       containerStyle={styles.container}
       id={props.sheetId}
-      onBeforeShow={(data) => setData(data)}
+      onBeforeShow={data => setData(data)}
     >
       <Text style={styles.title}>Your password is changed successfully</Text>
       <Button
         title="Ok"
         onPress={onHide}
         style={{
-          backgroundColor: "white",
-          color: "#7E8E51",
+          ...bgWhite,
+          ...textPrimary,
           marginVertical: 25
         }}
       />
       <Link
         title="Cancel"
         onPress={onHide}
-        style={{ color: "white", alignItems: "center", marginBottom: 30 }}
+        style={{ ...textWhite, ...itemsCenter, marginBottom: 30 }}
       />
     </ActionSheet>
   )
 }
-registerSheet("forgotPassword", ForgotPassword);
+registerSheet("forgotPassword", ForgotPassword)
 registerSheet("resetPasswordSuccess", ResetPasswordSuccess)
 
 export default ForgotPassword

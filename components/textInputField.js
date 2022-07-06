@@ -2,11 +2,13 @@ import React, { useState } from "react"
 import { TextInput, StyleSheet, View, TouchableOpacity } from "react-native"
 import Icon from "react-native-vector-icons/Feather"
 
+import { COLORS, bgWhite, borderRadius, rowCenter, textBlack } from '../assets/styles';
+
 export const TextInputField = ({
   style,
   icon,
   secureTextEntry,
-  placeholderTextColor = "#ACACAC",
+  placeholderTextColor = COLORS.darkGreen,
   ...props
 }) => {
   const [isSecured, setSecure] = useState(secureTextEntry);
@@ -16,7 +18,7 @@ export const TextInputField = ({
   }
   return (
     <View style={[styles.container, style]}>
-      <Icon size={16} name={icon} color="#ACACAC" />
+      <Icon size={16} name={icon} color={COLORS.darkGreen} />
       <TextInput
         style={[styles.textInput]}
         placeholderTextColor={placeholderTextColor}
@@ -25,7 +27,7 @@ export const TextInputField = ({
       />
       {secureTextEntry && (
         <TouchableOpacity onPress={toggleSecurity}>
-          <Icon size={16} name={isSecured ? "eye" : "eye-off" } color="#ACACAC" />
+          <Icon size={16} name={isSecured ? "eye" : "eye-off" } color={COLORS.darkGreen} />
         </TouchableOpacity>
       )}
     </View>
@@ -34,11 +36,10 @@ export const TextInputField = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
+    ...bgWhite,
     height: 49,
-    borderRadius: 5,
-    flexDirection: "row",
-    alignItems: "center",
+    ...borderRadius(),
+    ...rowCenter,
     paddingHorizontal: 15,
     shadowColor: 'rgba(0,0,0,0.4)',
     shadowOffset: {
@@ -53,5 +54,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 12,
     height: "100%",
+    fontFamily: 'Ginora-Sans-Regular',
+    ...textBlack,
   }
 })

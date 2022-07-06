@@ -1,6 +1,9 @@
 import React from "react"
-import { TouchableOpacity, StyleSheet, Text, View } from "react-native"
+import { TouchableOpacity, StyleSheet, View } from "react-native"
 import Icon from "react-native-vector-icons/Feather"
+
+import { Text } from './text';
+import { borderPrimary } from '../assets/styles';
 
 export const CheckBox = ({ checked, onChange, style, label }) => {
   return (
@@ -17,9 +20,9 @@ export const CheckBox = ({ checked, onChange, style, label }) => {
 
 const styles = StyleSheet.create({
   checkbox: {
-    borderColor: "#7E8F52",
+    ...borderPrimary,
     borderStyle: "solid",
-    borderWidth: 0.5,
+    borderWidth: 1,
     marginRight: 7
   },
   container: {
