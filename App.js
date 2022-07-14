@@ -29,10 +29,10 @@ const getNavigation = (modules, screens, initialRoute) => {
       const pakage = mod.package;
       const name = mod.value.title;
       const Navigator = mod.value.navigator;
-      const Component = () => {
+      const Component = (props) => {
         return (
           <OptionsContext.Provider value={getOptions(pakage)}>
-            <Navigator />
+            <Navigator {...props} />
           </OptionsContext.Provider>
         )
       }
@@ -44,7 +44,7 @@ const getNavigation = (modules, screens, initialRoute) => {
     return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName={"Auth"}
+          initialRouteName={"Onboarding"}
           screenOptions={screenOptions}
         >
           {routes}
