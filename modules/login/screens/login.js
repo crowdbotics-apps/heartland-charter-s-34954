@@ -21,7 +21,7 @@ export const Login = ({ navigation }) => {
         label="Remember me"
         style={{ alignSelf: "flex-end", marginTop: 13 }}
       />
-      <Button title="Log in" style={{ marginVertical: 32 }} />
+      <Button onPress={() => navigation.navigate('userProfile')} title="Log in" style={{ marginVertical: 32 }} />
       <Link
         title="Forgot Password?"
         onPress={() => SheetManager.show("forgotPassword", { navigateToReset })}

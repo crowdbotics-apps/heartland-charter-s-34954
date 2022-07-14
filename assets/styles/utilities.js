@@ -131,6 +131,7 @@ export const bgWhite = bg(white);
 export const bgLight = bg(light);
 export const bgGrey = bg(grey);
 export const bgLightDarkGreen = bg(lightDarkGreen);
+export const bgDarkGreen = bg(darkGreen);
 
 export function textColor(color) {
   return {
@@ -149,6 +150,8 @@ export const textBlack = textColor(black);
 export const borderColor = (color) => {
   return {
     borderColor: color,
+    borderStyle: 'solid',
+    borderWidth: 1
   }
 }
 export const borderPrimary = borderColor(primary);

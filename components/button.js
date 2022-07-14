@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 
 import { Text } from './text';
-import { borderRadius, centerCenter, bgPrimary } from '../assets/styles';
+import { borderRadius, centerCenter, bgPrimary, fontSize3 } from '../assets/styles';
 
 export const Button = ({
   title,
@@ -35,5 +35,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontWeight: '500',
     textTransform: 'capitalize',
+    ...fontSize3,
   }
 });

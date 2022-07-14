@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { TextInput, StyleSheet, View, TouchableOpacity } from "react-native"
 import Icon from "react-native-vector-icons/Feather"
 
-import { COLORS, bgWhite, borderRadius, rowCenter, textBlack } from '../assets/styles';
+import { COLORS, bgWhite, borderRadius, rowCenter, textBlack, fontSize5 } from '../assets/styles';
 
 export const TextInputField = ({
   style,
@@ -56,5 +56,7 @@ const styles = StyleSheet.create({
     height: "100%",
     fontFamily: 'Ginora-Sans-Regular',
     ...textBlack,
+    ...fontSize5,
+    fontWeight: '500'
   }
 })
