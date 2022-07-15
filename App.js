@@ -8,10 +8,16 @@ import {
   createReducer,
   combineReducers
 } from "@reduxjs/toolkit"
-
 import { screens } from "@screens"
 import { modules, reducers, hooks, initialRoute } from "@modules"
 import { connectors } from "@store"
+import Icon from 'react-native-vector-icons/Feather';
+import { SheetProvider } from "react-native-actions-sheet";
+import { useFonts } from 'expo-font';
+
+import './components/sheets';
+
+Icon.loadFont();
 
 const Stack = createStackNavigator()
 
@@ -23,22 +29,22 @@ const getNavigation = (modules, screens, initialRoute) => {
       const pakage = mod.package;
       const name = mod.value.title;
       const Navigator = mod.value.navigator;
-      const Component = () => {
+      const Component = (props) => {
         return (
           <OptionsContext.Provider value={getOptions(pakage)}>
-            <Navigator />
+            <Navigator {...props} />
           </OptionsContext.Provider>
         )
       }
       return <Stack.Screen key={name} name={name} component={Component} />
     })
 
-    const screenOptions = { headerShown: true };
+    const screenOptions = { headerShown: false };
 
     return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName={initialRoute}
+          initialRouteName={"Onboarding"}
           screenOptions={screenOptions}
         >
           {routes}
@@ -69,7 +75,14 @@ const getStore = (globalState) => {
 const App = () => {
   const global = useContext(GlobalOptionsContext)
   const Navigation = getNavigation(modules, screens, initialRoute)
-  const store = getStore(global)
+  const store = getStore(global);
+  const [loaded] = useFonts({
+    'Ginora-Sans-Regular': require('./assets/fonts/Ginora-Sans-Regular.otf'),
+  });
+
+  if (!loaded) {
+    return null;
+  }
 
   let effects = {}
   hooks.map(hook => {
@@ -78,7 +91,9 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <Navigation />
+      <SheetProvider>
+        <Navigation />
+      </SheetProvider>
     </Provider>
   )
 }

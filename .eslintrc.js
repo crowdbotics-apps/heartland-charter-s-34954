@@ -10,6 +10,7 @@ module.exports = {
         trailingComma: "none",
         arrowParens: "avoid"
       }
-    ]
-  }
+    ],
+    'trailing-comma': false,
+  },
 }
