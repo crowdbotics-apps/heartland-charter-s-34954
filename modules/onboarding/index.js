@@ -81,7 +81,8 @@ const styles = StyleSheet.create({
     width: 320,
     height: hp("50%"),
     marginVertical: 20,
-    ...borderRadiusMd()
+    ...borderRadiusMd(),
+    ...bgGrey
   },
   text: {
     ...textWhite,
