@@ -4,4 +4,5 @@ export * from './link';
 export * from './checkbox';
 export * from './text';
 export * from './title';
-export * from './layout'
+export * from './layout';
+export * from './card';

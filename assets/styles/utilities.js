@@ -92,7 +92,7 @@ export function generateBorderRaius(top, right, bottom, left) {
   return borderRadius
 }
 const { radius, radiusLg, radiusMd, font1, font2, font3, font4, font5, font6 } = SIZES;
-const { primary, white, light, grey, darkGreen, lightDarkGreen, black } = COLORS;
+const { primary, white, light, grey, darkGreen, lightDarkGreen, black, greyGreen } = COLORS;
 
 export const borderRadius = ({
   top = radius,
@@ -132,6 +132,7 @@ export const bgLight = bg(light);
 export const bgGrey = bg(grey);
 export const bgLightDarkGreen = bg(lightDarkGreen);
 export const bgDarkGreen = bg(darkGreen);
+export const bgGreyGreen = bg(greyGreen);
 
 export function textColor(color) {
   return {
