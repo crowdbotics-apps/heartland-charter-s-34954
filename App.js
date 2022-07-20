@@ -18,6 +18,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { GlobalOptionsContext, OptionsContext, getOptions } from "@options"
 import { View } from "react-native"
 import Home from '@screens/home';
+import StudentResources from '@screens/student-resources'
+import ParentResources from '@screens/parent-resources'
 
 import "./components/sheets"
 import { centerCenter, COLORS, fontSize6 } from "./assets/styles"
@@ -37,12 +39,29 @@ const ScreenPlaceholder = ({ route, navigation }) => {
   )
 }
 
+const HomeNavigator = () => {
+  return <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Screen
+      name="Home"
+      component={Home}
+    />
+    <Stack.Screen
+      name="studentResources"
+      component={StudentResources}
+    />
+     <Stack.Screen
+      name="parentResources"
+      component={ParentResources}
+    />
+  </Stack.Navigator>
+}
+
 const BottomNavigator = () => {
   return (
     <BottomTab.Navigator>
       <BottomTab.Screen
         name={"Home"}
-        component={Home}
+        component={HomeNavigator}
         options={{
           headerShown: false,
           tabBarActiveTintColor: COLORS.primary,
