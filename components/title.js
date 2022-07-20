@@ -8,6 +8,7 @@ import { Text } from './text';
  
 export const Title = ({
   title,
+  style
 }) => {
   const navigation = useNavigation();
   const onBack = () => {
@@ -15,7 +16,7 @@ export const Title = ({
       navigation.goBack()
     }
   }
-  return <View style={styles.container}>
+  return <View style={[styles.container, style]}>
     <TouchableOpacity style={styles.button} onPress={onBack}> 
       <Icon name="chevron-left" size={20} color={COLORS.white} />
     </TouchableOpacity>

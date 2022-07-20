@@ -1,5 +1,12 @@
-import React from "react"
-import { ScrollView, StyleSheet, View, Image, TouchableOpacity, SafeAreaView } from "react-native"
+import React, { useState } from "react"
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  Image,
+  TouchableOpacity,
+  SafeAreaView
+} from "react-native"
 import Icon from "react-native-vector-icons/Feather"
 
 import {
@@ -12,23 +19,23 @@ import {
   textWhite,
   COLORS,
   borderRadius,
-  bgWhite,
   rowBetween,
   bgPrimary,
   centerCenter
 } from "../../assets/styles"
 import { Card, Text } from "../../components"
-import logo from '../../assets/logo.png';
-import logAttendance from '../../assets/img/log-attendance.png';
-import parentResources from '../../assets/img/parent-resources.png';
-import procurement from '../../assets/img/procurement.png';
-import studentResources from '../../assets/img/student-resources.png';
-import parentPortal from '../../assets/img/parents-portal.png';
+import logo from "../../assets/logo.png"
+import logAttendance from "../../assets/img/log-attendance.png"
+import parentResources from "../../assets/img/parent-resources.png"
+import procurement from "../../assets/img/procurement.png"
+import studentResources from "../../assets/img/student-resources.png"
+import parentPortal from "../../assets/img/parents-portal.png"
+import ripple from "../../assets/img/ripple.png"
 
 const categories = [
   {
-    title: 'Heartland School Website',
-    image: logo,
+    title: "Heartland School Website",
+    image: logo
   },
   {
     title: "Parent Portal",
@@ -39,27 +46,31 @@ const categories = [
     image: logAttendance
   },
   {
-    title:  "Procurement",
-    image: procurement,
+    title: "Procurement",
+    image: procurement
   },
   {
     title: "Student Educational Resources",
-    image: studentResources
+    image: studentResources,
+    link: "studentResources"
   },
   {
     title: "Parent Educational Resources",
-    image: parentResources
+    image: parentResources,
+    link: "parentResources"
   }
 ]
 
-const CategoryCard = ({
-  title,
-  active,
-  image
-}) => {
-  let style = {};
-  let textStyle = {};
-  if(active) {
+const CategoryCard = ({ title, image, onPress }) => {
+  const [active, setActive] = useState(false)
+
+  const toggleActive = () => {
+    setActive(!active)
+  }
+
+  let style = {}
+  let textStyle = {}
+  if (active) {
     style = {
       ...bgPrimary
     }
@@ -67,34 +78,58 @@ const CategoryCard = ({
       ...textWhite
     }
   }
+
   return (
-    <Card style={[styles.categoryCard, style]}>
-      <Image source={image} style={styles.cardImage} />
-      <Text style={[styles.categoryTitle, textStyle]}>{title}</Text>
-    </Card>
+    <TouchableOpacity
+      onPress={onPress}
+      activeOpacity={1}
+      style={{ width: "48%" }}
+      onPressIn={toggleActive}
+      onPressOut={toggleActive}
+    >
+      <Card style={[styles.categoryCard, style]}>
+        <Image source={image} style={styles.cardImage} />
+        <Text style={[styles.categoryTitle, textStyle]}>{title}</Text>
+      </Card>
+    </TouchableOpacity>
   )
 }
 
-export default Home = () => {
+export default Home = ({
+  navigation
+}) => {
+
+  const handleNaviagtion = (link) => {
+    if(link) {
+      navigation.navigate(link);
+    }
+  }
   return (
     <SafeAreaView style={{ flex: 1 }}>
-       <ScrollView style={{ flex: 1, paddingHorizontal: 18 }}>
-      <Card style={styles.topCard}>
-        <Text style={styles.name}>Hello Alex,</Text>
-        <Text style={styles.greeting}>Good Morning</Text>
-      </Card>
-      <View style={centerBetween}>
-        <Text style={styles.categoryTitle}>Explore Categories</Text>
-        <TouchableOpacity style={styles.btn}>
-          <Icon name="sliders" color={COLORS.white} size={18} />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.categoryList}>
-        {categories.map((category, index) => (
-          <CategoryCard active={index === 0} key={category.title} title={category.title} image={category?.image} />
-        ))}
-      </View>
-    </ScrollView>
+      <ScrollView style={{ flex: 1, paddingHorizontal: 18 }}>
+        <Card style={styles.topCard}>
+          <Text style={styles.name}>Hello Alex,</Text>
+          <Text style={styles.greeting}>Good Morning</Text>
+          <Image style={styles.rippleEffect} source={ripple} />
+        </Card>
+        <View style={centerBetween}>
+          <Text style={styles.categoryTitle}>Explore Categories</Text>
+          <TouchableOpacity style={styles.btn}>
+            <Icon name="sliders" color={COLORS.white} size={18} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.categoryList}>
+          {categories.map((category, index) => (
+            <CategoryCard
+              active={index === 0}
+              key={category.title}
+              title={category.title}
+              image={category?.image}
+              onPress={() => handleNaviagtion(category.link)}
+            />
+          ))}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -128,23 +163,27 @@ const styles = StyleSheet.create({
   categoryTitle: {
     ...fontSize5,
     fontWeight: "500",
-    textAlign: "center",
+    textAlign: "center"
   },
   categoryCard: {
-    width: '48%',
     marginBottom: 16,
     ...centerCenter,
-    padding: 20
+    padding: 20,
+    flex: 1
   },
   categoryList: {
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
     ...rowBetween,
     marginTop: 10
   },
   cardImage: {
     width: 77,
     height: 77,
-    resizeMode: 'contain',
+    resizeMode: "contain",
     marginBottom: 20
+  },
+  rippleEffect: {
+    position: "absolute",
+    right: 0
   }
 })
